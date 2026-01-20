@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COREVIAZONE - Professional Lab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+
+    <nav class="navbar">
+        <div class="logo">COREVIA<span>ZONE</span> - Professional Geab</div>
+        <div class="nav-links">
+            <a href="#profile" data-i18n="nav-profile">Profile</a>
+            <a href="#passport" data-i18n="nav-passport">Passport</a>
+            <a href="#arsenal" data-i18n="nav-arsenal">Arsenal</a>
+        </div>
+        <div class="controls">
+            <button onclick="toggleLanguage()" class="lang-switch-btn" id="langBtnText">EN</button>
+            <button onclick="toggleTheme()" class="theme-btn" id="themeBtn"><i class="fas fa-sun"></i></button>
+            <button onclick="showAdmin()" class="admin-key"><i class="fas fa-cog"></i> Admin Key</button>
+        </div>
+    </nav>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <div class="hero-badge" data-i18n="hero-badge">Laboratory Certified</div>
+            <h1 data-i18n="hero-title">Engineering the Future with <span class="highlight">COREVIAZONE</span></h1>
+            <p data-i18n="hero-description">
+                <span class="arabic-text">هدفنا هو التحول الكامل نحو الجودة والشفافية التامة، للمرة الأولى على الإطلاق. 
+                ملفات كل جهاز لدينا مُتتبع ويخضع لأعمق الفحوصات في كل مكون، من أدق أجزائه.
+                للمستهلكين الذين تبحث عن الشفافية الكاملة والجودة القصوى.</span>
+            </p>
+            <button class="read-more-btn" data-i18n="read-more">Read More</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://i.ibb.co/3kXJ8H9/laptop-mockup.webp" alt="Laptop Mockup">
+        </div>
+    </section>
+
+    <section id="passport" class="passport-section">
+        <h2 data-i18n="digital-passport-title">Digital Passport System</h2>
+        <div class="cards-container">
+            <div class="card passport-display-card">
+                <div class="card-header">
+                    <h3 data-i18n="device-id-label">Device ID</h3>
+                    <div class="search-box">
+                        <input type="text" id="passportInput" placeholder="Search ID">
+                        <button onclick="checkPassport()"><i class="fas fa-search"></i> <span data-i18n="search-btn">Search</span></button>
+                    </div>
+                </div>
+                
+                <div id="passportResult" class="passport-result" style="display: none;">
+                    <h4 data-i18n="inspection-results">Comprehensive Inspection Results</h4>
+                    <div class="result-summary">
+                        <p class="certified-pass"><i class="fas fa-check-circle"></i> <span data-i18n="certified-pass">Certified Pass</span></p>
+                        <p class="price-display" id="resultPrice"></p>
+                    </div>
+                    
+                    <div class="tech-details-grid">
+                        <div>Max Temp: <span id="resultTemp">--</span></div>
+                        <div>CPU: <span id="resultCpu">--</span></div>
+                        <div>Battery Health: <span id="resultBattery">--</span></div>
+                        <div>HDD/SSD Health: <span id="resultHard">--</span></div>
+                    </div>
+
+                    <div class="image-qr-container">
+                        <img id="thermalImage" src="https://i.ibb.co/XF3vj9Y/thermal.webp" alt="Thermal Image" class="thermal-image">
+                        <div id="qrcode" class="qrcode-container"></div>
+                    </div>
+                    <p class="info-text" data-i18n="thermal-info">Thermal image showing internal performance under load.</p>
+                </div>
+            </div>
+
+            <div class="card add-device-card" id="adminPanel">
+                <div class="card-header">
+                    <h3 data-i18n="add-new-device-title">Add New Device</h3>
+                    <button class="close-btn" onclick="hideAdmin()"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="admin-form">
+                    <input type="text" id="pId" placeholder="ID (e.g. CZ-101)">
+                    <input type="text" id="pName" placeholder="Product Name">
+                    <input type="text" id="pPrice" placeholder="Price (e.g. 48,500 EGP)">
+                    <input type="text" id="pCpu" placeholder="CPU & RAM (e.g. i9-11th | 32GB RAM)">
+                    <input type="text" id="pTemp" placeholder="Max Temp (°C)">
+                    <input type="text" id="pBattery" placeholder="Battery Health (%)">
+                    <input type="text" id="pHard" placeholder="HDD/SSD Health (%)">
+                    <input type="text" id="pThermalImg" placeholder="Thermal Image URL">
+                    <input type="text" id="pImg" placeholder="Main Product Image URL">
+                    <div class="form-actions">
+                        <button class="whatsapp-btn"><i class="fab fa-whatsapp"></i> <span data-i18n="order-whatsapp">Order Now (WhatsApp)</span></button>
+                        <button class="publish-btn" onclick="addNewProduct()" data-i18n="save-publish">Save & Publish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="arsenal" class="arsenal-section">
+        <h2 data-i18n="arsenal-title">Our Arsenal</h2>
+        <div id="productGrid" class="product-grid">
+            </div>
+    </section>
+
+    <footer>
+        <div class="logo">COREVIA<span>ZONE</span></div>
+        <p data-i18n="rights">© 2026 Coreviazone - All Rights Reserved.</p>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
